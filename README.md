@@ -4,6 +4,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 Build and Deploy a Full Stack MERN Next.js 13 Threads App | React, Next JS, TypeScript, MongoDB
 
+## Environment Variables
+
+Copy `.env.example` to `.env`, then add your credentials.
+Note: Use a MongoDB user password, not the account password!
+
+## Run the application
+
 First, run the development server:
 
 ```bash

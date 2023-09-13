@@ -19,7 +19,7 @@ function Bottombar() {
             <Link
               href={link.route}
               key={link.label}
-              className={`bottombar_link1 ${isActive && 'bg-primary-500'}`}
+              className={`bottombar_link ${isActive && 'bg-primary-500'}`}
             >
               <Image
                 src={link.imgURL}
@@ -35,6 +35,6 @@ function Bottombar() {
       </div>
     </section>
   )
-}
+}//split(/\s+/)[0]} is to get just the first word for saving space
 
 export default Bottombar;

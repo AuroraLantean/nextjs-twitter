@@ -8,7 +8,7 @@ export const metadata = {
   description: 'A NextJs 13 meta thread app'
 }
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });//font
 
 export default function RootLayout({
   children

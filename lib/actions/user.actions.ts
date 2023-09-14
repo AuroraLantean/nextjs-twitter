@@ -17,7 +17,7 @@ export async function updateUser({
   userId, username, name, bio, image, path
 }: Params): Promise<void> {
   console.log("updateUser()...");
-  connectToDB();
+  await connectToDB();//WHY not await?
 
   //typo in the new user attributes will not trigger error!!!
   try {
@@ -33,7 +33,7 @@ export async function updateUser({
       { upsert: true },//to insert if it does not exist, or update if it exist!
     );
 
-    //https://nextjs.org/docs/app/api-reference/functions/revalidatePath
+    //https://nextjs.org/docs/app/api-reference/functions/revalidatePath ... to purge cached data on-demand for a specific path.
     if (path === '/profile/edit') {
       revalidatePath(path);
     }
@@ -46,7 +46,7 @@ export async function updateUser({
 
 export async function fetchUser(userId: string) {
   try {
-    connectToDB();
+    await connectToDB();
 
     return await User.findOne({ id: userId })
     // .populate({

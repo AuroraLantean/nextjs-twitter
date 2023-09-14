@@ -69,8 +69,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
   }
 
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
-    console.log("onSubmit()...", values)
-    const blob = values.profile_photo;//usually an image value is called a blob. Here we use ReactHook Form
+    console.log("onSubmit()... values:", values)
+    const blob = values.profile_photo;//usually an image value is called a blob. profile_photo because we are using a ReactHook Form
     const hasImageChanged = isBase64Image(blob)
 
     if (hasImageChanged) {
@@ -111,7 +111,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           name="profile_photo"
           render={({ field }) => (
             <FormItem className="flex items-center gap-4">
-              <FormLabel className="account-form_image-lable">
+              <FormLabel className="account-form_image-label">
                 {field.value ? (
                   <Image
                     src={field.value}
@@ -142,6 +142,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   onChange={(e) => handleImage(e, field.onChange)}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -150,7 +151,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="flex flex-col w-full gap-3">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="text-base-semibold text-light-2">
                 Name
               </FormLabel>
@@ -161,6 +162,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -169,7 +171,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           control={form.control}
           name="username"
           render={({ field }) => (
-            <FormItem className="flex flex-col w-full gap-3">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="text-base-semibold text-light-2">
                 Username
               </FormLabel>
@@ -180,6 +182,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -188,7 +191,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
           control={form.control}
           name="bio"
           render={({ field }) => (
-            <FormItem className="flex flex-col w-full gap-3">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="text-base-semibold text-light-2">
                 Bio
               </FormLabel>
@@ -199,6 +202,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />

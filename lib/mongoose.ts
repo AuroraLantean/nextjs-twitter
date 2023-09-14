@@ -16,10 +16,15 @@ export const connectToDB = async () => {
     const dbusername = encodeURIComponent(process.env.MONGODB_USERNAME);
     const dbpassword = encodeURIComponent(process.env.MONGODB_PASSWORD);
 
-    const connectionString2 = `mongodb+srv://${dbusername}:${dbpassword}@${process.env.MONGODB_URLX}`;
-    console.log("connectionString2:", connectionString2);
+    const connStr = `mongodb+srv://${dbusername}:${dbpassword}@${process.env.MONGODB_URLX}`;
+    console.log("connStr:", connStr);
 
-    await mongoose.connect(connectionString2);
+    await mongoose.connect(connStr, {
+      dbName: 'threads',
+      //useNewUrlParser: true,
+      //useUnifiedTopology: true,
+      //useCreateIndex: true,
+    });
     isConnected = true;
     console.log("connectToDB() successful");
   } catch (error) {

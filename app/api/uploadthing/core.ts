@@ -5,8 +5,10 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 const f = createUploadthing();
 
 const getUser = async () => await currentUser();
+// const auth = (req: Request) => ({ id: "fakeId"})
 
 // FileRouter for your app, can contain multiple FileRoutes
+// changed from the docs: "imageUploader" -> "media", maxFileCount: 1, getUser()
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   media: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })

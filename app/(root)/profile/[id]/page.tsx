@@ -5,8 +5,8 @@ import { redirect } from "next/navigation";
 import { profileTabs } from "@/constants";
 
 import ProfileHeader from "@/components/shared/ProfileHeader";
-//import ThreadsTab from "@/components/shared/ThreadsTab";
-//import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ThreadsTab from "@/components/shared/ThreadsTab";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { fetchUser } from "@/lib/actions/user.actions";
 
@@ -27,12 +27,6 @@ async function Page({ params }: { params: { id: string } }) {
         imgUrl={userInfo.image}
         bio={userInfo.bio}
       />
-
-    </section>
-  );
-}
-export default Page;
-/**
 
       <div className='mt-9'>
         <Tabs defaultValue='threads' className='w-full'>
@@ -62,6 +56,7 @@ export default Page;
               value={tab.value}
               className='w-full text-light-1'
             >
+              {/* @ts-ignore */}
               <ThreadsTab
                 currentUserId={loggedInUser.id}
                 accountId={userInfo.id}
@@ -71,5 +66,8 @@ export default Page;
           ))}
         </Tabs>
       </div>
- */
-//              {/* @ts-ignore */}
+    </section>
+  );
+}
+export default Page;
+

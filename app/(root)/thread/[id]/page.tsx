@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 
-//import Comment from "@/components/forms/Comment";
+import Comment from "@/components/forms/Comment";
 import ThreadCard from "@/components/cards/ThreadCard";
 
 import { fetchUser } from "@/lib/actions/user.actions";
@@ -54,12 +54,7 @@ async function page({ params }: { params: { id: string } }) {
           />
         ))}
       </div>
-    </section>
-  );
-}
 
-export default page;
-/**
       <div className='mt-7'>
         <Comment
           threadId={params.id}
@@ -67,4 +62,8 @@ export default page;
           currentUserId={JSON.stringify(userInfo._id)}
         />
       </div>
- */
+    </section>
+  );
+}
+
+export default page;

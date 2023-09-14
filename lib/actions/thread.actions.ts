@@ -10,7 +10,7 @@ import Thread from "../models/thread.model";
 
 
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
-  connectToDB();
+  await connectToDB();
 
   // Calculate the number of posts to skip based on the page number and page size.
   const skipAmount = (pageNumber - 1) * pageSize;
@@ -104,7 +104,7 @@ async function fetchAllChildThreads(threadId: string): Promise<any[]> {
 /*
 export async function deleteThread(id: string, path: string): Promise<void> {
   try {
-    connectToDB();
+    await connectToDB();
 
     // Find the thread to be deleted (the main thread)
     const mainThread = await Thread.findById(id).populate("author community");
@@ -200,14 +200,14 @@ export async function fetchThreadById(threadId: string) {
     throw new Error("Unable to fetch thread");
   }
 }
-/*
+
 export async function addCommentToThread(
   threadId: string,
   commentText: string,
   userId: string,
   path: string
 ) {
-  connectToDB();
+  await connectToDB();
 
   try {
     // Find the original thread by its ID
@@ -239,4 +239,4 @@ export async function addCommentToThread(
     throw new Error("Unable to add comment");
   }
 }
-*/
+

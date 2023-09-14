@@ -157,9 +157,9 @@ export async function deleteThread(id: string, path: string): Promise<void> {
     throw new Error(`Failed to delete thread: ${error.message}`);
   }
 }
-
+*/
 export async function fetchThreadById(threadId: string) {
-  connectToDB();
+  await connectToDB();
 
   try {
     const thread = await Thread.findById(threadId)
@@ -168,11 +168,11 @@ export async function fetchThreadById(threadId: string) {
         model: User,
         select: "_id id name image",
       }) // Populate the author field with _id and username
-      .populate({
-        path: "community",
-        model: Community,
-        select: "_id id name image",
-      }) // Populate the community field with _id and name
+      // .populate({
+      //   path: "community",
+      //   model: Community,
+      //   select: "_id id name image",
+      // }) // Populate the community field with _id and name
       .populate({
         path: "children", // Populate the children field
         populate: [
@@ -196,7 +196,7 @@ export async function fetchThreadById(threadId: string) {
 
     return thread;
   } catch (err) {
-    console.error("Error while fetching thread:", err);
+    console.error("Error @fetchThreadById:", err);
     throw new Error("Unable to fetch thread");
   }
 }

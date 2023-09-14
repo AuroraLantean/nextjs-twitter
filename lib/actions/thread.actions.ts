@@ -6,7 +6,7 @@ import { connectToDB } from "../mongoose";
 
 import User from "../models/user.model";
 import Thread from "../models/thread.model";
-/*import Community from "../models/community.model";
+//import Community from "../models/community.model";
 
 
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
@@ -15,7 +15,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   // Calculate the number of posts to skip based on the page number and page size.
   const skipAmount = (pageNumber - 1) * pageSize;
 
-  // Create a query to fetch the posts that have no parent (top-level threads) (a thread that is not a comment/reply).
+  // Create a query to fetch the posts that have no parent (top-level threads) (a thread that is not a comment/reply): parentId is either null or undefined
   const postsQuery = Thread.find({ parentId: { $in: [null, undefined] } })
     .sort({ createdAt: "desc" })
     .skip(skipAmount)
@@ -24,16 +24,16 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
       path: "author",
       model: User,
     })
-    .populate({
-      path: "community",
-      model: Community,
-    })
+    // .populate({
+    //   path: "community",
+    //   model: Community,
+    // })
     .populate({
       path: "children", // Populate the children field
       populate: {
         path: "author", // Populate the author field within children
         model: User,
-        select: "_id name parentId image", // Select only _id and username fields of the author
+        select: "_id name parentId image", // Select only _id, name, parentId, image fields of the author
       },
     });
 
@@ -47,7 +47,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   const isNext = totalPostsCount > skipAmount + posts.length;
 
   return { posts, isNext };
-}*/
+}
 
 interface Params {
   text: string,
@@ -200,7 +200,7 @@ export async function fetchThreadById(threadId: string) {
     throw new Error("Unable to fetch thread");
   }
 }
-
+/*
 export async function addCommentToThread(
   threadId: string,
   commentText: string,
